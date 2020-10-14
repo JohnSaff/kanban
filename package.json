@@ -1,0 +1,24 @@
+{
+  "name": "kanban",
+  "version": "1.0.0",
+  "description": "",
+  "main": "models.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JSafrany/kanban.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JSafrany/kanban/issues"
+  },
+  "homepage": "https://github.com/JSafrany/kanban#readme",
+  "dependencies": {
+    "jest": "^26.5.3",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0"
+  }
+}
