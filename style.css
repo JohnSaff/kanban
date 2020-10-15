@@ -9,8 +9,11 @@
     justify-content: left;    
 }
 
-.avatar {
+.avatar-box {
     margin: 0px 0px 0px 30px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 15px -5px black;
+    overflow: hidden;
 }
 
 .tasks-boards-flexbox {
