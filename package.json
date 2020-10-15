@@ -4,7 +4,8 @@
   "description": "",
   "main": "models.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,12 @@
   },
   "homepage": "https://github.com/JSafrany/kanban#readme",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "handlebars": "^4.7.6",
     "jest": "^26.5.3",
+    "nodemon": "^2.0.5",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
   }
