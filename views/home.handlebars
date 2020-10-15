@@ -1,0 +1,96 @@
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">app name/brand</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#createUser">Create User <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#createBoard">Create Board</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <h1 class="display-4">our app!</h1>
+    </div>
+
+
+<div id="createUser" class="overlay">
+	<div class="popup">
+		<h2>Create User</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			<form action='/users/create' method='POST'>
+        <label>Username</label>
+        <input type='text' name = 'username' required/><br>
+        <label>Avatar URL</label>
+        <input type='url' name ='avatar' required/><br>
+        <button>submit</button>
+    </form>
+		</div>
+	</div>
+</div>
+
+
+<div id="createBoard" class="overlay">
+	<div class="popup">
+		<h2>Create Board</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			<form action='/boards/create' method='POST'>
+        <label>Name</label>
+        <input type='text' name = 'name' required/><br>
+        <label>description</label>
+        <input type='text' name ='description' required/><br>
+        <button>submit</button>
+    </form>
+		</div>
+	</div>
+</div>
+
+
+    <form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {{#each boards}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{this.description}}</h6>
+            <p class="card-text">{{#each this.users}} {{this.username}} {{/each}}</p>
+            <div class="btn-group" role="group" aria-label="Third group">
+                <button type="button" class="btn btn-secondary">DELETE</button>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Third group">
+                <button type="button" class="btn btn-secondary">EDIT</button>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Here i am</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			Thank to pop me out of that button, but now i'm done so you can close this window.
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
