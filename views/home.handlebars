@@ -60,33 +60,26 @@
         <input type="text" id="username" name="username"><br>
         <input type="submit" value="Submit">
     </form>
+    <div class='container'>
+        <div class="row">
+            {{#each boards}}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{this.description}}</h6>
+                    <p class="card-text">{{#each this.users}} {{this.username}} {{/each}}</p>
+                    <div class="btn-group" role="group" aria-label="Third group">
+                        <button type="button" class="btn btn-secondary">DELETE</button>
+                    </div>
 
-    {{#each boards}}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{this.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{this.description}}</h6>
-            <p class="card-text">{{#each this.users}} {{this.username}} {{/each}}</p>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button type="button" class="btn btn-secondary">DELETE</button>
+                    <div class="btn-group" role="group" aria-label="Third group">
+                        <button type="button" class="btn btn-secondary">EDIT</button>
+                    </div>
+                </div>
             </div>
-
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button type="button" class="btn btn-secondary">EDIT</button>
-            </div>
+            {{/each}}
         </div>
     </div>
-    {{/each}}
-
-<div id="popup1" class="overlay">
-	<div class="popup">
-		<h2>Here i am</h2>
-		<a class="close" href="#">&times;</a>
-		<div class="content">
-			Thank to pop me out of that button, but now i'm done so you can close this window.
-		</div>
-	</div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

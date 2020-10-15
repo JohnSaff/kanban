@@ -33,7 +33,7 @@ app.get('/boards/create',(req,res)=>{
 })
 
 
-//--------creating board post request
+//--------create board ------
 
 app.post('/boards/create',async (req,res)=>{
     console.log('creating board')
@@ -42,7 +42,7 @@ app.post('/boards/create',async (req,res)=>{
 })
 
 
-//--------post request to add user to db from create user page
+//--------create user ------
 
 app.post('/users/create',async (req,res)=>{
     console.log('creating user')
@@ -58,4 +58,55 @@ app.get('/',async (req,res)=>{
         nest: true
     })
     res.render('home',{boards})
+})
+
+//----create task -----
+
+app.post('/boards/:boardid/tasks/create',async (req,res) =>{
+    const task = await Task.create({taskName:req.body.taskName,taskDescription:req.body.taskDescription,status:req.body.status,priority:req.body.priority,deadline:req.body.deadline})
+    const board = await Board.findByPk(req.params.boardid)
+    await board.addTask(task)
+    res.redirect(`/boards/${req.params.boardid}`)
+})
+
+//----edit board------
+
+app.post('/boards/:boardid/edit',async (req,res) =>{
+    const board = await Board.findByPk(req.params.boardid)
+    await board.update({name:req.body.name,description:req.body.description})
+    res.redirect(`/boards/${req.params.boardid}`)
+})
+
+//-----edit user-------
+
+app.post('/users/:userid/edit',async (req,res) =>{
+    const user = await User.findByPk(req.params.userid)
+    await user.update({username:req.body.username,avatar:req.body.avatar})
+    res.redirect(`/boards/${req.params.boardid}`)
+})
+
+//-----destroy user ----
+
+app.post('/user/:userid/delete', async ()=>{
+    await Task.findByPk(req.params.userid).then(user =>{
+        user.destroy()
+    })
+    res.redirect('/')
+})
+
+//-----destroy task ----
+app.post('/boards/:boardid/tasks/:taskid/delete', async ()=>{
+    await Task.findByPk(req.params.taskid).then(task =>{
+        task.destroy()
+    })
+    res.redirect(`/boards/${req.params.boardid}`)
+})
+
+//-----destroy board ----
+
+app.post('/boards/:boardid/delete', async ()=>{
+    await Board.findByPk(req.params.boardid).then(board =>{
+        board.destroy()
+    })
+    res.redirect('/')
 })
