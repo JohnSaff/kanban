@@ -20,6 +20,7 @@ class Task extends Model{}
 Task.init({
     taskName: DataTypes.STRING,
     taskDescription: DataTypes.STRING,
+    status: DataTypes.STRING,
     priority: DataTypes.STRING,
     deadline: DataTypes.DATE
 },{sequelize:sequelize})
