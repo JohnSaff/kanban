@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.jumbotron {
+    display: flex;
+    align-items: center;
+    justify-content: left;    
+}
+
+.avatar-box {
+    margin: 0px 0px 0px 30px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 15px -5px black;
+    overflow: hidden;
+}
+
+.tasks-boards-flexbox {
+    margin: 30px;
+}
+
+.flexbox-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.flexbox-row2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+  
+.flexbox-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    border: 1px dashed black;
+}
+  
+.tasks-column {
+    height: 100px;
+    text-align: center;
+   
+}
+  
+.boards-column {
+    height: 100px;
+    text-align: center;
+   
+}
