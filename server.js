@@ -27,10 +27,35 @@ app.get('/users/create',(req,res)=>{
     res.render('createUser')
 })
 
+//------rendering create board page-----
+app.get('/boards/create',(req,res)=>{
+    res.render('createBoard')
+})
+
+
+//--------creating board post request
+
+app.post('/boards/create',async (req,res)=>{
+    console.log('creating board')
+    const board = await Board.create({name:req.body.name,description:req.body.description,})
+    res.redirect(`/boards/${board.id}`)
+})
+
+
 //--------post request to add user to db from create user page
 
 app.post('/users/create',async (req,res)=>{
     console.log('creating user')
     const user = await User.create({username:req.body.username,avatar:req.body.avatar})
     res.redirect(`/users/${user.id}`)
+})
+
+//-----rendering home page-----
+
+app.get('/',async (req,res)=>{
+    const boards = await Board.findAll({
+        include: [{model:User}],
+        nest: true
+    })
+    res.render('home',{boards})
 })
