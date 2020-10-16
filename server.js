@@ -60,12 +60,27 @@ app.get('/',async (req,res)=>{
     res.render('home',{boards})
 })
 
+//------rendering board-----
+
+app.get('/boards/:boardid',async (req,res)=>{
+    const board = await Board.findByPk(req.params.boardid)
+    const inProgress = await board.getTasks({where:{status:'in progress'}})
+    const done = await board.getTasks({where:{status:'done'}})
+    const toDo = await board.getTasks({where:{status:'to do'}})
+    res.render('board',{board,inProgress,done,toDo})
+})
+
 //----create task -----
 
 app.post('/boards/:boardid/tasks/create',async (req,res) =>{
     const task = await Task.create({taskName:req.body.taskName,taskDescription:req.body.taskDescription,status:req.body.status,priority:req.body.priority,deadline:req.body.deadline})
     const board = await Board.findByPk(req.params.boardid)
     await board.addTask(task)
+    user = await User.findAll({where:{username:`${req.body.assignee}`}})
+    console.log(user)
+    if(user[0]){
+        await user[0].addTask(task)
+    }
     res.redirect(`/boards/${req.params.boardid}`)
 })
 
@@ -109,4 +124,38 @@ app.post('/boards/:boardid/delete', async ()=>{
         board.destroy()
     })
     res.redirect('/')
+})
+
+
+//-----fetch requests for board-----
+app.get('/boards/:boardid/tasks/done',async (req,res)=>{
+    const done =await Task.findAll({
+        where:{BoardId:req.params.boardid,
+            status:"done"}});
+    res.send(done)
+})
+app.get('/boards/:boardid/tasks/todo',async (req,res)=>{
+    const todo = await Task.findAll({
+        where:{
+            BoardId:req.params.boardid,
+            status:"to do"}});
+    res.send(todo)
+})
+app.get('/boards/:boardid/tasks/doing',async (req,res)=>{
+    const doing = await Task.findAll({
+        where:{
+            BoardId:req.params.boardid,
+            status:"in progress"}});
+    res.send(doing)
+})
+
+//-----changing status of tasks-------
+
+app.post('/tasks/:taskid/update',async(req,res)=>{
+    const task = await Task.findByPk(req.params.taskid)
+    console.log(req.body)
+    const status = req.body.status
+    console.log(status)
+    await task.update({status:status})
+    res.send()
 })
