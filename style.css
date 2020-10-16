@@ -6,7 +6,8 @@
 .jumbotron {
     display: flex;
     align-items: center;
-    justify-content: left;    
+    justify-content: left;  
+    background-color: #dce4e9;
 }
 
 .avatar-box {
