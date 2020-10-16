@@ -41,7 +41,12 @@
                     <option name='urg1'>Urgent</option>
                 </select><br>
                 <label>Assignee</label>
-                <input type="text" name="assignee" /><br>
+                <select name='assignee'>
+                    <option name="none"></option>
+                    {{#each users}}
+                        <option name="{{this.username}}"> {{this.username}} </option>
+                    {{/each}}
+                </select><br>
                 <label>Deadline</label>
                 <input type="date" name="deadline" /><br>
                 <input type='hidden' name="status" value='to do' />
@@ -50,6 +55,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 <div id="createBoard" class="overlay">
 	<div class="popup">
@@ -92,16 +101,44 @@ console.log('script running')
                             <h5 class="card-title">${task.taskName}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
                             <p class="card-text">${task.taskDescription}</p>
-                            <div class="btn-group" role="group" aria-label="Third group">
-                                <button type="button" class="btn btn-secondary">DELETE</button>
-                            </div>
+                            <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                                    <input name ='id' type='hidden' value = ${task.id} />
+                                    <button type="submit" class="btn btn-secondary">DELETE</button>
+                                </form>
 
                             <div class="btn-group" role="group" aria-label="Third group">
-                                <button type="button" class="btn btn-secondary">EDIT</button>
+
+                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
                             </div>
                         </div>
                     </div>
 
+                    <div id="editTask${task.id}" class="overlay">
+                        <div class="popup">
+                            <h2>Add Task</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
+                                    <label>Task Title</label>
+                                    <input type='text' name='taskName' value='${task.taskName}' required /><br>
+                                    <label>Description</label>
+                                    <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
+                                    <label>Priority:</label>
+                                    <select name='priority'>
+                                        <option name="low1">Low</option>
+                                        <option name='med1'>Medium</option>
+                                        <option name='high1'>High</option>
+                                        <option name='urg1'>Urgent</option>
+                                    </select><br>
+                                    <label>Assignee</label>
+                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <label>Deadline</label>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <button>submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                     `).join('')}
                 </div>
@@ -115,15 +152,44 @@ console.log('script running')
                             <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
                             <p class="card-text">${task.taskDescription}</p>
                             <div class="btn-group" role="group" aria-label="Third group">
-                                <button type="button" class="btn btn-secondary">DELETE</button>
+                                <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                                    <input name ='id' type='hidden' value = ${task.id} />
+                                    <button type="submit" class="btn btn-secondary">DELETE</button>
+                                </form>
                             </div>
 
                             <div class="btn-group" role="group" aria-label="Third group">
-                                <button type="button" class="btn btn-secondary">EDIT</button>
+                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
                             </div>
                         </div>
                     </div>
 
+                    <div id="editTask${task.id}" class="overlay">
+                        <div class="popup">
+                            <h2>Add Task</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
+                                    <label>Task Title</label>
+                                    <input type='text' name='taskName' value='${task.taskName}' required /><br>
+                                    <label>Description</label>
+                                    <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
+                                    <label>Priority:</label>
+                                    <select name='priority'>
+                                        <option name="low1">Low</option>
+                                        <option name='med1'>Medium</option>
+                                        <option name='high1'>High</option>
+                                        <option name='urg1'>Urgent</option>
+                                    </select><br>
+                                    <label>Assignee</label>
+                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <label>Deadline</label>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <button>submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                     `).join('')}
                 </div>
@@ -137,20 +203,51 @@ console.log('script running')
                             <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
                             <p class="card-text">${task.taskDescription}</p>
                             <div class="btn-group" role="group" aria-label="Third group">
-                                <button type="button" class="btn btn-secondary">DELETE</button>
+                                <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                                    <input name ='id' type='hidden' value = ${task.id} />
+                                    <button type="submit" class="btn btn-secondary">DELETE</button>
+                                </form>
                             </div>
 
                             <div class="btn-group" role="group" aria-label="Third group">
-                                <button type="button" class="btn btn-secondary">EDIT</button>
+                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
                             </div>
                         </div>
                     </div>
 
+                    <div id="editTask${task.id}" class="overlay">
+                        <div class="popup">
+                            <h2>Add Task</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
+                                    <label>Task Title</label>
+                                    <input type='text' name='taskName' value='${task.taskName}' required /><br>
+                                    <label>Description</label>
+                                    <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
+                                    <label>Priority:</label>
+                                    <select name='priority'>
+                                        <option name="low1">Low</option>
+                                        <option name='med1'>Medium</option>
+                                        <option name='high1'>High</option>
+                                        <option name='urg1'>Urgent</option>
+                                    </select><br>
+                                    <label>Assignee</label>
+                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <label>Deadline</label>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <button>submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                     `).join('')}
                 </div>
             </div>
         </div>
+
+
 `
 const update={
     onDropToDo: async (state,event)=>{
@@ -196,7 +293,16 @@ const update={
         return state
     },
     delete: (state,form)=>{
-
+        const data = new FormData(form)
+        const id = data.get('id')
+        const postRequest={
+            method : 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({id:id})
+        }
+        fetch(`/tasks/${id}/delete`,postRequest).then(()=>app.run('getTasks'))
     },
     edit:(state,form)=>{
 

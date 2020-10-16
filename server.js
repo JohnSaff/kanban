@@ -64,10 +64,11 @@ app.get('/',async (req,res)=>{
 
 app.get('/boards/:boardid',async (req,res)=>{
     const board = await Board.findByPk(req.params.boardid)
-    const inProgress = await board.getTasks({where:{status:'in progress'}})
-    const done = await board.getTasks({where:{status:'done'}})
-    const toDo = await board.getTasks({where:{status:'to do'}})
-    res.render('board',{board,inProgress,done,toDo})
+    const users = await User.findAll()
+    const inProgress = await board.getTasks({where:{status:'in progress'},include:[{model:User}]})
+    const done = await board.getTasks({where:{status:'done'},include:[{model:User}]})
+    const toDo = await board.getTasks({where:{status:'to do'},include:[{model:User}]})
+    res.render('board',{board,inProgress,done,toDo,users})
 })
 
 //----create task -----
@@ -89,6 +90,14 @@ app.post('/boards/:boardid/tasks/create',async (req,res) =>{
 app.post('/boards/:boardid/edit',async (req,res) =>{
     const board = await Board.findByPk(req.params.boardid)
     await board.update({name:req.body.name,description:req.body.description})
+    res.redirect(`/boards/${req.params.boardid}`)
+})
+
+//----update task-----
+
+app.post('/boards/:boardid/tasks/:taskid/update',async (req,res)=>{
+    const task = await Task.findByPk(req.params.taskid)
+    await task.update({taskName:req.body.taskName,taskDescription:req.body.taskDescription,status:req.body.status,priority:req.body.priority,deadline:req.body.deadline})
     res.redirect(`/boards/${req.params.boardid}`)
 })
 
@@ -149,7 +158,7 @@ app.get('/boards/:boardid/tasks/doing',async (req,res)=>{
     res.send(doing)
 })
 
-//-----changing status of tasks-------
+//-----changing status of tasks from board-------
 
 app.post('/tasks/:taskid/update',async(req,res)=>{
     const task = await Task.findByPk(req.params.taskid)
@@ -157,5 +166,13 @@ app.post('/tasks/:taskid/update',async(req,res)=>{
     const status = req.body.status
     console.log(status)
     await task.update({status:status})
+    res.send()
+})
+
+//---destroying task from board-----
+
+app.post('/tasks/:taskid/delete',async(req,res)=>{
+    const task = await Task.findByPk(req.params.taskid)
+    await task.destroy()
     res.send()
 })
