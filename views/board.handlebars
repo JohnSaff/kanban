@@ -1,0 +1,332 @@
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="/">app name/brand</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#createTask">Add task <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#createBoard">Create Board</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Delete Board</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+<div id="createTask" class="overlay">
+    <div class="popup">
+        <h2>Add Task</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            <form action='/boards/{{board.id}}/tasks/create' method='POST'>
+                <label>Task Title</label>
+                <input type='text' name='taskName' required /><br>
+                <label>Description</label>
+                <input type='text' name='taskDescription' required /><br>
+                <label>Priority:</label>
+                <select name='priority'>
+                    <option name="low1">Low</option>
+                    <option name='med1'>Medium</option>
+                    <option name='high1'>High</option>
+                    <option name='urg1'>Urgent</option>
+                </select><br>
+                <label>Assignee</label>
+                <select name='assignee'>
+                    <option name="none"></option>
+                    {{#each users}}
+                        <option name="{{this.username}}"> {{this.username}} </option>
+                    {{/each}}
+                </select><br>
+                <label>Deadline</label>
+                <input type="date" name="deadline" /><br>
+                <input type='hidden' name="status" value='to do' />
+                <button>submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="createBoard" class="overlay">
+	<div class="popup">
+		<h2>Create Board</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			<form action='/boards/create' method='POST'>
+        <label>Name</label>
+        <input type='text' name = 'name' required/><br>
+        <label>description</label>
+        <input type='text' name ='description' required/><br>
+        <button>submit</button>
+    </form>
+		</div>
+	</div>
+</div>
+
+    <div class="jumbotron">
+        <h1 class="display-4">{{board.name}}</h1>
+    </div>
+
+<main id="app"></main>
+
+<script>
+console.log('script running')
+    const state = {
+        toDo: [],
+        doing: [],
+        done:[]
+    }
+    const view = (state)=>`
+        <div class='container'>
+            <div class='row'>
+                <div class='col-auto' ondragover="event.preventDefault()" ondrop="app.run('onDropToDo',event)">
+                    <h3>To Do</h3>
+                    ${state.toDo.map(task=>`
+
+                    <div class="card"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
+                        <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "background-color:green;": (task.priority =="Medium") ? "background-color:yellow;" : (task.priority =="High") ? "background-color:orange;" : "background-color:red;"}">
+                            <h5 class="card-title">${task.taskName}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
+                            <p class="card-text">${task.taskDescription}</p>
+                            <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                                    <input name ='id' type='hidden' value = ${task.id} />
+                                    <button type="submit" class="btn btn-secondary">DELETE</button>
+                                </form>
+
+                            <div class="btn-group" role="group" aria-label="Third group">
+
+                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="editTask${task.id}" class="overlay">
+                        <div class="popup">
+                            <h2>Add Task</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
+                                    <label>Task Title</label>
+                                    <input type='text' name='taskName' value='${task.taskName}' required /><br>
+                                    <label>Description</label>
+                                    <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
+                                    <label>Priority:</label>
+                                    <select name='priority'>
+                                        <option name="low1">Low</option>
+                                        <option name='med1'>Medium</option>
+                                        <option name='high1'>High</option>
+                                        <option name='urg1'>Urgent</option>
+                                    </select><br>
+                                    <label>Assignee</label>
+                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <label>Deadline</label>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <button>submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    `).join('')}
+                </div>
+                <div class='col-auto' ondragover="event.preventDefault()" ondrop="app.run('onDropDoing',event)">
+                    <h3>In Progress</h3>
+                    ${state.doing.map(task=>`
+
+                    <div class="card"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
+                        <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "background-color:green;": (task.priority =="Medium") ? "background-color:yellow;" : (task.priority =="High") ? "background-color:orange;" : "background-color:red;"}">
+                            <h5 class="card-title">${task.taskName}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
+                            <p class="card-text">${task.taskDescription}</p>
+                            <div class="btn-group" role="group" aria-label="Third group">
+                                <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                                    <input name ='id' type='hidden' value = ${task.id} />
+                                    <button type="submit" class="btn btn-secondary">DELETE</button>
+                                </form>
+                            </div>
+
+                            <div class="btn-group" role="group" aria-label="Third group">
+                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="editTask${task.id}" class="overlay">
+                        <div class="popup">
+                            <h2>Add Task</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
+                                    <label>Task Title</label>
+                                    <input type='text' name='taskName' value='${task.taskName}' required /><br>
+                                    <label>Description</label>
+                                    <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
+                                    <label>Priority:</label>
+                                    <select name='priority'>
+                                        <option name="low1">Low</option>
+                                        <option name='med1'>Medium</option>
+                                        <option name='high1'>High</option>
+                                        <option name='urg1'>Urgent</option>
+                                    </select><br>
+                                    <label>Assignee</label>
+                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <label>Deadline</label>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <button>submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    `).join('')}
+                </div>
+                <div class='col-auto'ondragover="event.preventDefault()" ondrop="app.run('onDropDone',event)">
+                    <h3>Done</h3>
+                    ${state.done.map(task=>`
+
+                    <div class="card" dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
+                        <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "background-color:green;": (task.priority =="Medium") ? "background-color:yellow;" : (task.priority =="High") ? "background-color:orange;" : "background-color:red;"}">
+                            <h5 class="card-title">${task.taskName}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
+                            <p class="card-text">${task.taskDescription}</p>
+                            <div class="btn-group" role="group" aria-label="Third group">
+                                <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                                    <input name ='id' type='hidden' value = ${task.id} />
+                                    <button type="submit" class="btn btn-secondary">DELETE</button>
+                                </form>
+                            </div>
+
+                            <div class="btn-group" role="group" aria-label="Third group">
+                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="editTask${task.id}" class="overlay">
+                        <div class="popup">
+                            <h2>Add Task</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
+                                    <label>Task Title</label>
+                                    <input type='text' name='taskName' value='${task.taskName}' required /><br>
+                                    <label>Description</label>
+                                    <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
+                                    <label>Priority:</label>
+                                    <select name='priority'>
+                                        <option name="low1">Low</option>
+                                        <option name='med1'>Medium</option>
+                                        <option name='high1'>High</option>
+                                        <option name='urg1'>Urgent</option>
+                                    </select><br>
+                                    <label>Assignee</label>
+                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <label>Deadline</label>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <button>submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+
+
+`
+const update={
+    onDropToDo: async (state,event)=>{
+        event.preventDefault()
+        const id = await event.dataTransfer.getData('text')
+        console.log(id)
+        const postRequest ={
+            method : 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({id:id,status:'to do'})
+        }
+        fetch(`/tasks/${id}/update`,postRequest).then(()=>app.run('getTasks'))
+        return state
+    },
+    onDropDoing: async (state,event)=>{
+        event.preventDefault()
+        const id = await event.dataTransfer.getData('text')
+        console.log(id)
+        const postRequest ={
+            method : 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({id:id,status:'in progress'})
+        }
+        fetch(`/tasks/${id}/update`,postRequest).then(()=>app.run('getTasks'))
+        return state
+    },
+    onDropDone: async (state,event)=>{
+        event.preventDefault()
+        const id = await event.dataTransfer.getData('text')
+        console.log(id)
+        const postRequest ={
+            method : 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({id:id,status:'done'})
+        }
+        fetch(`/tasks/${id}/update`,postRequest).then(()=>app.run('getTasks'))
+        return state
+    },
+    delete: (state,form)=>{
+        const data = new FormData(form)
+        const id = data.get('id')
+        const postRequest={
+            method : 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({id:id})
+        }
+        fetch(`/tasks/${id}/delete`,postRequest).then(()=>app.run('getTasks'))
+    },
+    edit:(state,form)=>{
+
+    },
+    onDragStart: (state,event) =>{
+        console.log(event.target)
+        event.dataTransfer.setData('text',event.target.id)
+        return state
+    },
+    getTasks: async (state)=>{
+        state.done = await fetch('/boards/{{board.id}}/tasks/done').then(res=>res.json())
+        state.doing = await fetch('/boards/{{board.id}}/tasks/doing').then(res=>res.json())
+        state.toDo = await fetch('/boards/{{board.id}}/tasks/todo').then(res=>res.json())
+        return state
+    }
+}
+app.start('app',state,view,update)
+app.run('getTasks')
+</script>
+
+
+                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                        crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+                        crossorigin="anonymous"></script>
