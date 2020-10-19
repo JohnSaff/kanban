@@ -132,7 +132,7 @@
 input[name="name"] {
   padding:5px;
   margin: 6px;
-  border-radius:10px;
+  border-radius:5px;
 }
 
 input[name="username"] {
@@ -149,6 +149,12 @@ input[name="taskName"] {
 
 
 input[name="taskDescription"] {
+  padding:5px;
+  margin: 6px;
+  border-radius:5px;
+}
+
+input[name="description"] {
   padding:5px;
   margin: 6px;
   border-radius:5px;
