@@ -32,6 +32,15 @@ app.get('/boards/create',(req,res)=>{
     res.render('createBoard')
 })
 
+//-------render user data on profile page-------
+app.get('/users/:userid', async (req,res)=>{
+    const user = await User.findByPk(4)
+    console.log("-----------------------------")
+    console.log(req.params.userid)
+    const tasks = await user.getTasks()
+    const boards = await user.getBoards()
+    res.render("profile",{user, tasks, boards})
+})
 
 //--------create board ------
 
