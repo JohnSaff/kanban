@@ -35,8 +35,6 @@ app.get('/boards/create',(req,res)=>{
 //-------render user data on profile page-------
 app.get('/users/:userid', async (req,res)=>{
     const user = await User.findByPk(req.params.userid)
-    console.log("-----------------------------")
-    console.log(req.params)
     const tasks = await user.getTasks()
     const boards = await user.getBoards()
     res.render("profile",{user, tasks, boards})
