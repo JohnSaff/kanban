@@ -4,7 +4,7 @@ const expressHandlebars = require('express-handlebars')
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const { response } = require('express')
 const app = express()
-const {Board,Task,User,sequelize} = require("./models")
+const {Board,Task,User,userboards,sequelize} = require("./models")
 
 const handlebars = expressHandlebars({
     handlebars: allowInsecurePrototypeAccess(Handlebars)
@@ -34,9 +34,9 @@ app.get('/boards/create',(req,res)=>{
 
 //-------render user data on profile page-------
 app.get('/users/:userid', async (req,res)=>{
-    const user = await User.findByPk(4)
+    const user = await User.findByPk(req.params.userid)
     console.log("-----------------------------")
-    console.log(req.params.userid)
+    console.log(req.params)
     const tasks = await user.getTasks()
     const boards = await user.getBoards()
     res.render("profile",{user, tasks, boards})
@@ -86,7 +86,28 @@ app.get('/boards/:boardid',async (req,res)=>{
     const inProgress = await board.getTasks({where:{status:'in progress'},include:[{model:User}]})
     const done = await board.getTasks({where:{status:'done'},include:[{model:User}]})
     const toDo = await board.getTasks({where:{status:'to do'},include:[{model:User}]})
-    res.render('board',{board,inProgress,done,toDo,users})
+    const boardUsers = await board.getUsers()
+    res.render('board',{board,inProgress,done,toDo,users,boardUsers})
+})
+
+//----assign user to board---
+
+app.post('/boards/:boardid/users/add',async (req,res)=>{
+    const board = await Board.findByPk(req.params.boardid)
+    const users = await User.findAll({where:{username:req.body.username}})
+    const user = users[0]
+    await board.addUser(user)
+    res.redirect(`/boards/${req.params.boardid}`)
+})
+
+//---remove assigned user from board---
+
+app.post('/boards/:boardid/users/remove',async (req,res)=>{
+    const board = await Board.findByPk(req.params.boardid)
+    const users = await User.findAll({where:{username:req.body.username}})
+    const user = users[0]
+    await user.removeBoard(board)
+    res.redirect(`/boards/${req.params.boardid}`)
 })
 
 //----create task -----
