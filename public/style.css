@@ -55,14 +55,16 @@
   overflow: auto;
 }
 
-
+.navbar-toggler-icon{
+    z-index: 20;
+}
 
 
 /* --------PROFILE PAGE--------- */
 .jumbotron {
   display: flex;
   align-items: center;
-  justify-content: left;    
+  justify-content: left;
 }
 
 .avatar-box {
@@ -108,11 +110,11 @@
 .tasks-column {
   height: 100px;
   text-align: center;
- 
+
 }
 
 .boards-column {
   height: 100px;
   text-align: center;
- 
+
 }
