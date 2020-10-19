@@ -10,14 +10,14 @@
         
         <link rel = "stylesheet" type = "text/css" href = ":/style.css" />
     
-        <title>Profile</title>
+        <title>{{user.username}}'s Profile</title>
     </head>
 
     <body>
 
         <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
 
-            <a class="navbar-brand" href="/#">app name/brand</a>
+            <a class="navbar-brand" href="/#">Faire</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,19 +53,70 @@
         <div class='flexbox-row'>
             <div class='flexbox-column'>
                 <div class='tasks-column'>
-                    User Tasks
+                    Assigned Tasks
                 </div>
             </div>
             <div class='flexbox-column'>
                 <div class='boards-column'>
-                    User Boards
+                    My Boards
                 </div>
             </div>
         </div>
         <div class='flexbox-row2'>
             <div class='flexbox-column'>
                 <div class='tasks-column'>
-                    tasks go here
+                    {{!-- {{#each tasks}}
+                        <script>
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body" id='${task.id}' style="${(task.priority =="Low") ? "background-color:green;": (task.priority =="Medium") ? "background-color:yellow;" : (task.priority =="High") ? "background-color:orange;" : "background-color:red;"}">
+                                    <h5 class="card-title">${task.taskName}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
+                                    <p class="card-text">${task.taskDescription}</p>
+                                    <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                                            <input name ='id' type='hidden' value = ${task.id} />
+                                            <button type="submit" class="btn btn-secondary">DELETE</button>
+                                        </form>
+
+                                    <div class="btn-group" role="group" aria-label="Third group">
+
+                                        <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="editTask${task.id}" class="overlay">
+                                <div class="popup">
+                                    <h2>Edit Task</h2>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content">
+                                        <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
+                                            <label>Task Title</label>
+                                            <input type='text' name='taskName' value='${task.taskName}' required /><br>
+                                            <label>Description</label>
+                                            <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
+                                            <label>Priority:</label>
+                                            <select name='priority'>
+                                                <option name="low1">Low</option>
+                                                <option name='med1'>Medium</option>
+                                                <option name='high1'>High</option>
+                                                <option name='urg1'>Urgent</option>
+                                            </select><br>
+                                            <label>Assignee</label>
+                                            <select name='assignee'>
+                                                <option name="none"></option>
+                                                {{#each users}}
+                                                    <option name="{{this.username}}"> {{this.username}} </option>
+                                                {{/each}}
+                                            </select><br><br>
+                                            <label>Deadline</label>
+                                            <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                            <button>submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </script>
+                    {{/each}} --}}
                 </div>
             </div>
             <div class='flexbox-column'>
@@ -78,35 +129,43 @@
 
 
     <div id="createUser" class="overlay">
-	<div class="popup">
-		<h2>Create User</h2>
-		<a class="close" href="#">&times;</a>
-		<div class="content">
-			<form action='/users/create' method='POST'>
-        <label>Username</label>
-        <input type='text' name = 'username' required/><br>
-        <label>Avatar URL</label>
-        <input type='url' name ='avatar' required/><br>
-        <button>submit</button>
-    </form>
-		</div>
-	</div>
-</div>
+        <div class="popup">
+            <h2>Create User</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <form action='/users/create' method='POST'>
+                    <label>Username</label>
+                    <input type='text' name = 'username' required/><br>
+                    <label>Avatar URL</label>
+                    <input type='url' name ='avatar' required/><br>
+                    <button>submit</button>
+                </form>
+            </div>
+	    </div>
+    </div>
 
 
-<div id="createBoard" class="overlay">
-	<div class="popup">
-		<h2>Create Board</h2>
-		<a class="close" href="#">&times;</a>
-		<div class="content">
-			<form action='/boards/create' method='POST'>
-        <label>Name</label>
-        <input type='text' name = 'name' required/><br>
-        <label>description</label>
-        <input type='text' name ='description' required/><br>
-        <button>submit</button>
-    </form>
-		</div>
+    <div id="createBoard" class="overlay">
+        <div class="popup">
+            <h2>Create Board</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <form action='/boards/create' method='POST'>
+                    <label>Name</label>
+                    <input type='text' name = 'name' required/><br>
+                    <label>description</label>
+                    <input type='text' name ='description' required/><br>
+                    <button>submit</button>
+                </form>
+		    </div>
+        </div>
 	</div>
    
 </html>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
