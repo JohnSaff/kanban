@@ -6,7 +6,12 @@
 .jumbotron {
     display: flex;
     align-items: center;
+<<<<<<< Updated upstream
     justify-content: left;    
+=======
+    justify-content: left;  
+    background-color: #dce4e9;
+>>>>>>> Stashed changes
 }
 
 .avatar-box {
@@ -52,4 +57,16 @@
     height: 100px;
     text-align: center;
    
+<<<<<<< Updated upstream
 }
+=======
+}
+
+.card {
+    width: 18rem;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+
+>>>>>>> Stashed changes
