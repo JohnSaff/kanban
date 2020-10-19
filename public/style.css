@@ -30,6 +30,7 @@
   z-index: -1;
   position: relative;
   transition: all 5s ease-in-out;
+  
 }
 
 .popup h2 {
@@ -46,16 +47,26 @@
   font-weight: bold;
   text-decoration: none;
   color: #333;
+  
 }
 .popup .close:hover {
   color: #06D85F;
+  
 
 }
 .popup .content {
   max-height: 30%;
   overflow: auto;
+  
 }
 
-.card{
- border-radius: 25px;
-}
+.card-body{
+  border-radius: 25px;
+  padding: 15px;
+  outline:none;
+  
+ }
+
+ .card{
+   padding:13px;
+ }

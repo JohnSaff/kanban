@@ -6,12 +6,7 @@
 .jumbotron {
     display: flex;
     align-items: center;
-<<<<<<< Updated upstream
     justify-content: left;    
-=======
-    justify-content: left;  
-    background-color: #dce4e9;
->>>>>>> Stashed changes
 }
 
 .avatar-box {
@@ -55,18 +50,29 @@
   
 .boards-column {
     height: 100px;
-    text-align: center;
-   
-<<<<<<< Updated upstream
-}
-=======
-}
+    text-align: cen
 
-.card {
-    width: 18rem;
+}
+.card{
     border-radius: 25px;
-    padding: 15px;
 }
 
 
->>>>>>> Stashed changes
+* {
+  box-sizing: border-box;
+}
+
+
+.col-auto{
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; 
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

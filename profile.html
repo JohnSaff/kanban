@@ -48,6 +48,27 @@
         
     </div>
 
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        /* Create three equal columns that floats next to each other */
+        .flexbox-column {
+          float: left;
+          width: 33.33%;
+          padding: 10px;
+          height: 300px; /* Should be removed. Only for demonstration */
+        }
+        
+        /* Clear floats after the columns */
+        .flexbox-row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
+
     <div class="tasks-boards-flexbox">
         <div class='flexbox-row'>
             <div class='flexbox-column'>
