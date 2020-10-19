@@ -1,3 +1,5 @@
+    <title>{{board.name}}</title>
+    
     <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
 
         <a class="navbar-brand" href="/">Faire</a>
@@ -98,9 +100,6 @@
 </div>
 
 
-
-
-
 <div id="createBoard" class="overlay">
 	<div class="popup">
 		<h2>Create Board</h2>
@@ -140,11 +139,28 @@ console.log('script running')
         done:[]
     }
     const view = (state)=>`
-        <div class='container'>
-            <div class='row'>
-                <div class='col-auto' ondragover="event.preventDefault()" ondrop="app.run('onDropToDo',event)">
-                    <h3>To Do</h3>
-                    ${state.toDo.map(task=>`
+        <div class="tasks-boards-flexbox">
+            <div class="flexbox-row">
+                <div class="flexbox-column">
+                    <div class="todo-column"> 
+                        To Do
+                    </div>
+                </div>
+                <div class="flexbox-column">
+                    <div class="inprogress-column">
+                        In Progress
+                    </div>
+                </div>
+                <div class="flexbox-column">
+                    <div class="done-column">
+                        Done
+                    </div>
+                </div>
+            </div>
+            <div class="flexbox-row2">
+                <div class="flexbox-column" ondragover="event.preventDefault()" ondrop="app.run('onDropToDo',event)">
+                    <div class="todo-column">
+                        ${state.toDo.map(task=>`
 
                     <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                         <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
@@ -159,10 +175,11 @@ console.log('script running')
                             </div>
                             <div class="btn-group" role="group" aria-label="Third group">
 
-                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                                    <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
 
                     <div id="editTask${task.id}" class="overlay">
                         <div class="popup">
@@ -194,13 +211,13 @@ console.log('script running')
                                 </form>
                             </div>
                         </div>
-                    </div>
 
                     `).join('')}
+                    </div>
                 </div>
-                <div class='col-auto' ondragover="event.preventDefault()" ondrop="app.run('onDropDoing',event)">
-                    <h3>In Progress</h3>
-                    ${state.doing.map(task=>`
+                <div class="flexbox-column" ondragover="event.preventDefault()" ondrop="app.run('onDropDoing',event)">
+                    <div class="inprogress-column">
+                        ${state.doing.map(task=>`
 
                     <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                         <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
@@ -214,11 +231,11 @@ console.log('script running')
                                 </form>
                             </div>
 
-                            <div class="btn-group" role="group" aria-label="Third group">
-                                <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                                <div class="btn-group" role="group" aria-label="Third group">
+                                    <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                     <div id="editTask${task.id}" class="overlay">
                         <div class="popup">
@@ -248,15 +265,16 @@ console.log('script running')
                                     <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline.slice(0,10)}'` : ''} min="2020-01-01" max="2100-01-01"/><br>
                                     <button class="popupbtn">submit</button>
                                 </form>
+
                             </div>
                         </div>
-                    </div>
 
-                    `).join('')}
+                        `).join('')}
+                    </div>
                 </div>
-                <div class='col-auto'ondragover="event.preventDefault()" ondrop="app.run('onDropDone',event)">
-                    <h3>Done</h3>
-                    ${state.done.map(task=>`
+                <div class="flexbox-column" ondragover="event.preventDefault()" ondrop="app.run('onDropDone',event)">
+                    <div class="done-column">
+                        ${state.done.map(task=>`
 
                     <div class="card border-0" dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                         <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
@@ -309,12 +327,17 @@ console.log('script running')
                     </div>
 
                     `).join('')}
+                    </div>
                 </div>
             </div>
         </div>
+    `
 
 
-`
+
+
+
+
 const update={
     onDropToDo: async (state,event)=>{
         event.preventDefault()

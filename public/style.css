@@ -208,8 +208,11 @@ input[type=url] {
 .flexbox-row {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
+  height: 45px;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
 }
 
 .flexbox-row2 {
@@ -224,17 +227,51 @@ input[type=url] {
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
-  border: 1px dashed black;
 }
 
 .tasks-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   height: 100px;
-  text-align: center;
+  align-items: center;
 
 }
 
 .boards-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   height: 100px;
   text-align: center;
-
+  align-items: center;
 }
+
+
+
+
+
+/*---------BOARD PAGE--------- */
+.todo-column {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  align-items: center;
+}
+
+.inprogress-column {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  align-items: center;
+ 
+}
+
+.done-column {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  align-items: center;
+ 
+}
+
