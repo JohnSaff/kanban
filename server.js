@@ -4,7 +4,7 @@ const expressHandlebars = require('express-handlebars')
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const { response } = require('express')
 const app = express()
-const {Board,Task,User,sequelize} = require("./models")
+const {Board,Task,User,userboards,sequelize} = require("./models")
 
 const handlebars = expressHandlebars({
     handlebars: allowInsecurePrototypeAccess(Handlebars)
@@ -32,6 +32,13 @@ app.get('/boards/create',(req,res)=>{
     res.render('createBoard')
 })
 
+//-------render user data on profile page-------
+app.get('/users/:userid', async (req,res)=>{
+    const user = await User.findByPk(req.params.userid)
+    const tasks = await user.getTasks()
+    const boards = await user.getBoards()
+    res.render("profile",{user, tasks, boards})
+})
 
 //--------create board ------
 
@@ -57,7 +64,16 @@ app.get('/',async (req,res)=>{
         include: [{model:User}],
         nest: true
     })
-    res.render('home',{boards})
+    const users = await User.findAll()
+    res.render('home',{boards,users})
+})
+
+//-----find user from homepage----
+app.post('/finduser', async (req,res)=>{
+    console.log(req.body)
+    users = await User.findAll({where:{username:req.body.username}})
+    user = users[0]
+    res.redirect(`/users/${user.id}`)
 })
 
 //------rendering board-----
@@ -68,7 +84,28 @@ app.get('/boards/:boardid',async (req,res)=>{
     const inProgress = await board.getTasks({where:{status:'in progress'},include:[{model:User}]})
     const done = await board.getTasks({where:{status:'done'},include:[{model:User}]})
     const toDo = await board.getTasks({where:{status:'to do'},include:[{model:User}]})
-    res.render('board',{board,inProgress,done,toDo,users})
+    const boardUsers = await board.getUsers()
+    res.render('board',{board,inProgress,done,toDo,users,boardUsers})
+})
+
+//----assign user to board---
+
+app.post('/boards/:boardid/users/add',async (req,res)=>{
+    const board = await Board.findByPk(req.params.boardid)
+    const users = await User.findAll({where:{username:req.body.username}})
+    const user = users[0]
+    await board.addUser(user)
+    res.redirect(`/boards/${req.params.boardid}`)
+})
+
+//---remove assigned user from board---
+
+app.post('/boards/:boardid/users/remove',async (req,res)=>{
+    const board = await Board.findByPk(req.params.boardid)
+    const users = await User.findAll({where:{username:req.body.username}})
+    const user = users[0]
+    await user.removeBoard(board)
+    res.redirect(`/boards/${req.params.boardid}`)
 })
 
 //----create task -----
@@ -90,7 +127,7 @@ app.post('/boards/:boardid/tasks/create',async (req,res) =>{
 app.post('/boards/:boardid/edit',async (req,res) =>{
     const board = await Board.findByPk(req.params.boardid)
     await board.update({name:req.body.name,description:req.body.description})
-    res.redirect(`/boards/${req.params.boardid}`)
+    res.redirect('/')
 })
 
 //----update task-----
@@ -111,7 +148,7 @@ app.post('/users/:userid/edit',async (req,res) =>{
 
 //-----destroy user ----
 
-app.post('/user/:userid/delete', async ()=>{
+app.get('/user/:userid/delete', async (req,res)=>{
     await Task.findByPk(req.params.userid).then(user =>{
         user.destroy()
     })
@@ -119,7 +156,7 @@ app.post('/user/:userid/delete', async ()=>{
 })
 
 //-----destroy task ----
-app.post('/boards/:boardid/tasks/:taskid/delete', async ()=>{
+app.get('/boards/:boardid/tasks/:taskid/delete', async (req,res)=>{
     await Task.findByPk(req.params.taskid).then(task =>{
         task.destroy()
     })
@@ -128,10 +165,9 @@ app.post('/boards/:boardid/tasks/:taskid/delete', async ()=>{
 
 //-----destroy board ----
 
-app.post('/boards/:boardid/delete', async ()=>{
-    await Board.findByPk(req.params.boardid).then(board =>{
-        board.destroy()
-    })
+app.get('/boards/:boardid/delete', async (req,res)=>{
+    const board = await Board.findByPk(req.params.boardid)
+    await board.destroy()
     res.redirect('/')
 })
 
