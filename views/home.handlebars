@@ -1,5 +1,5 @@
     <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">app name/brand</a>
+        <a class="navbar-brand" href="#">Faire</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
             <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
     </nav>
 
     <div class="jumbotron">
-        <h1 class="display-4">our app!</h1>
+        <h1 class="display-4">Faire</h1>
     </div>
 
 
@@ -27,11 +27,11 @@
 		<a class="close" href="#">&times;</a>
 		<div class="content">
 			<form action='/users/create' method='POST'>
-        <label>Username</label>
+        <label>Username:</label>
         <input type='text' name = 'username' required/><br>
-        <label>Avatar URL</label>
+        <label>Avatar URL:</label>
         <input type='url' name ='avatar' required/><br>
-        <button>submit</button>
+        <button class="popupbtn">submit</button>
     </form>
 		</div>
 	</div>
@@ -44,11 +44,11 @@
 		<a class="close" href="#">&times;</a>
 		<div class="content">
 			<form action='/boards/create' method='POST'>
-                <label>Name</label>
+                <label>Name:</label>
                 <input type='text' name = 'name' required/><br>
-                <label>description</label>
+                <label>description:</label>
                 <input type='text' name ='description' required/><br>
-                <button>submit</button>
+                <button class="popupbtn">submit</button>
             </form>
 		</div>
 	</div>
@@ -56,12 +56,12 @@
 
     <form action='/finduser' method='POST'>
         <label for="username">Username:</label>
-        <select name='username'>
+        <select name='username1'>
             {{#each users}}
                 <option name="{{this.username}}"> {{this.username}} </option>
             {{/each}}
         </select>
-        <button class="btn btn-secondary">Find</button>
+        <button class="popupbtnhome">Find</button>
     </form>
 
 
@@ -83,16 +83,16 @@
             </div>
 
             <div id="editBoard{{this.id}}" class="overlay">
-                <div class="popup">
+                <div class="popupbtn">
                     <h2>Edit Board</h2>
                     <a class="close" href="#">&times;</a>
                     <div class="content">
                         <form action='/boards/{{this.id}}/edit' method='POST'>
-                            <label>Name</label>
+                            <label>Name:</label>
                             <input type='text' name = 'name' value='{{this.name}}' required/><br>
-                            <label>description</label>
+                            <label>description:</label>
                             <input type='text' name ='description' value='{{this.description}}' required/><br>
-                            <button>submit</button>
+                            <button class="popupbtn">submit</button>
                         </form>
                     </div>
                 </div>
