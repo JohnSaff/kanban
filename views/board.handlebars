@@ -89,7 +89,7 @@
                     {{/each}}
                 </select><br>
                 <label>Deadline</label>
-                <input type="date" name="deadline" /><br>
+                <input type="date" name="deadline" min="2020-01-01" max="2100-01-01"/><br>
                 <input type='hidden' name="status" value='to do' />
                 <button class="popupbtn">submit</button>
             </form>
@@ -174,10 +174,10 @@ console.log('script running')
                                     <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
                                     <label>Priority:</label>
                                     <select name='priority'>
-                                        <option name="low1">Low</option>
-                                        <option name='med1'>Medium</option>
-                                        <option name='high1'>High</option>
-                                        <option name='urg1'>Urgent</option>
+                                        <option name="low1" ${task.priority == 'Low' ? "selected" : ''}>Low</option>
+                                        <option name='med1' ${task.priority == 'Medium' ? "selected" : ''}>Medium</option>
+                                        <option name='high1' ${task.priority == 'High' ? "selected" : ''}>High</option>
+                                        <option name='urg1' ${task.priority == 'Urgent' ? "selected" : ''}>Urgent</option>
                                     </select><br>
                                     <label>Assignee</label>
                                     <select name='assignee'>
@@ -187,7 +187,7 @@ console.log('script running')
                                         {{/each}}
                                     </select><br><br>
                                     <label>Deadline</label>
-                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline.slice(0,10)}'` : ''} min="2020-01-01" max="2100-01-01"/><br>
                                     <button>submit</button>
                                 </form>
                             </div>
@@ -230,10 +230,10 @@ console.log('script running')
                                     <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
                                     <label>Priority:</label>
                                     <select name='priority'>
-                                        <option name="low1">Low</option>
-                                        <option name='med1'>Medium</option>
-                                        <option name='high1'>High</option>
-                                        <option name='urg1'>Urgent</option>
+                                        <option name="low1" ${task.priority == 'Low' ? "selected" : ''}>Low</option>
+                                        <option name='med1' ${task.priority == 'Medium' ? "selected" : ''}>Medium</option>
+                                        <option name='high1' ${task.priority == 'High' ? "selected" : ''}>High</option>
+                                        <option name='urg1' ${task.priority == 'Urgent' ? "selected" : ''}>Urgent</option>
                                     </select><br>
                                     <label>Assignee</label>
                                     <select name='assignee'>
@@ -243,7 +243,7 @@ console.log('script running')
                                         {{/each}}
                                     </select><br><br>
                                     <label>Deadline</label>
-                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline.slice(0,10)}'` : ''} min="2020-01-01" max="2100-01-01"/><br>
                                     <button>submit</button>
                                 </form>
                             </div>
@@ -286,10 +286,10 @@ console.log('script running')
                                     <input type='text' name='taskDescription' value='${task.taskDescription}' required /><br>
                                     <label>Priority:</label>
                                     <select name='priority'>
-                                        <option name="low1">Low</option>
-                                        <option name='med1'>Medium</option>
-                                        <option name='high1'>High</option>
-                                        <option name='urg1'>Urgent</option>
+                                        <option name="low1" ${task.priority == 'Low' ? "selected" : ''}>Low</option>
+                                        <option name='med1' ${task.priority == 'Medium' ? "selected" : ''}>Medium</option>
+                                        <option name='high1' ${task.priority == 'High' ? "selected" : ''}>High</option>
+                                        <option name='urg1' ${task.priority == 'Urgent' ? "selected" : ''}>Urgent</option>
                                     </select><br>
                                     <label>Assignee</label>
                                     <select name='assignee'>
@@ -299,7 +299,7 @@ console.log('script running')
                                         {{/each}}
                                     </select><br><br>
                                     <label>Deadline</label>
-                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
+                                    <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline.slice(0,10)}'` : ''} min="2020-01-01" max="2100-01-01" /><br>
                                     <button>submit</button>
                                 </form>
                             </div>
