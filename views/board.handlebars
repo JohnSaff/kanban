@@ -16,7 +16,7 @@
                     <a class="nav-link" href="#createBoard">Create Board</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Delete Board</a>
+                    <a class="nav-link" href="/boards/{{board.id}}/delete">Delete Board</a>
                 </li>
             </ul>
         </div>
@@ -115,7 +115,7 @@ console.log('script running')
 
                     <div id="editTask${task.id}" class="overlay">
                         <div class="popup">
-                            <h2>Add Task</h2>
+                            <h2>Edit Task</h2>
                             <a class="close" href="#">&times;</a>
                             <div class="content">
                                 <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
@@ -131,7 +131,12 @@ console.log('script running')
                                         <option name='urg1'>Urgent</option>
                                     </select><br>
                                     <label>Assignee</label>
-                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <select name='assignee'>
+                                        <option name="none"></option>
+                                        {{#each users}}
+                                            <option name="{{this.username}}"> {{this.username}} </option>
+                                        {{/each}}
+                                    </select><br><br>
                                     <label>Deadline</label>
                                     <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
                                     <button>submit</button>
@@ -166,7 +171,7 @@ console.log('script running')
 
                     <div id="editTask${task.id}" class="overlay">
                         <div class="popup">
-                            <h2>Add Task</h2>
+                            <h2>Edit Task</h2>
                             <a class="close" href="#">&times;</a>
                             <div class="content">
                                 <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
@@ -182,7 +187,12 @@ console.log('script running')
                                         <option name='urg1'>Urgent</option>
                                     </select><br>
                                     <label>Assignee</label>
-                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <select name='assignee'>
+                                        <option name="none"></option>
+                                        {{#each users}}
+                                            <option name="{{this.username}}"> {{this.username}} </option>
+                                        {{/each}}
+                                    </select><br><br>
                                     <label>Deadline</label>
                                     <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
                                     <button>submit</button>
@@ -217,7 +227,7 @@ console.log('script running')
 
                     <div id="editTask${task.id}" class="overlay">
                         <div class="popup">
-                            <h2>Add Task</h2>
+                            <h2>Edit Task</h2>
                             <a class="close" href="#">&times;</a>
                             <div class="content">
                                 <form action='/boards/{{board.id}}/tasks/${task.id}/update' method='POST'>
@@ -233,7 +243,12 @@ console.log('script running')
                                         <option name='urg1'>Urgent</option>
                                     </select><br>
                                     <label>Assignee</label>
-                                    <input type="text" name="assignee" value='${task.user}' /><br>
+                                    <select name='assignee'>
+                                        <option name="none"></option>
+                                        {{#each users}}
+                                            <option name="{{this.username}}"> {{this.username}} </option>
+                                        {{/each}}
+                                    </select><br><br>
                                     <label>Deadline</label>
                                     <input type="date" name="deadline" ${task.deadline ? `value = '${task.deadline}'` : ''} /><br>
                                     <button>submit</button>

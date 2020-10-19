@@ -57,7 +57,16 @@ app.get('/',async (req,res)=>{
         include: [{model:User}],
         nest: true
     })
-    res.render('home',{boards})
+    const users = await User.findAll()
+    res.render('home',{boards,users})
+})
+
+//-----find user from homepage----
+app.post('/finduser', async (req,res)=>{
+    console.log(req.body)
+    users = await User.findAll({where:{username:req.body.username}})
+    user = users[0]
+    res.redirect(`/users/${user.id}`)
 })
 
 //------rendering board-----
@@ -90,7 +99,7 @@ app.post('/boards/:boardid/tasks/create',async (req,res) =>{
 app.post('/boards/:boardid/edit',async (req,res) =>{
     const board = await Board.findByPk(req.params.boardid)
     await board.update({name:req.body.name,description:req.body.description})
-    res.redirect(`/boards/${req.params.boardid}`)
+    res.redirect('/')
 })
 
 //----update task-----
@@ -111,7 +120,7 @@ app.post('/users/:userid/edit',async (req,res) =>{
 
 //-----destroy user ----
 
-app.post('/user/:userid/delete', async ()=>{
+app.get('/user/:userid/delete', async (req,res)=>{
     await Task.findByPk(req.params.userid).then(user =>{
         user.destroy()
     })
@@ -119,7 +128,7 @@ app.post('/user/:userid/delete', async ()=>{
 })
 
 //-----destroy task ----
-app.post('/boards/:boardid/tasks/:taskid/delete', async ()=>{
+app.get('/boards/:boardid/tasks/:taskid/delete', async (req,res)=>{
     await Task.findByPk(req.params.taskid).then(task =>{
         task.destroy()
     })
@@ -128,10 +137,9 @@ app.post('/boards/:boardid/tasks/:taskid/delete', async ()=>{
 
 //-----destroy board ----
 
-app.post('/boards/:boardid/delete', async ()=>{
-    await Board.findByPk(req.params.boardid).then(board =>{
-        board.destroy()
-    })
+app.get('/boards/:boardid/delete', async (req,res)=>{
+    const board = await Board.findByPk(req.params.boardid)
+    await board.destroy()
     res.redirect('/')
 })
 
