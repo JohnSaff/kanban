@@ -148,11 +148,12 @@ console.log('script running')
                             <h5 class="card-title">${task.taskName}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
                             <p class="card-text">${task.taskDescription}</p>
-                            <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
+                            <div class="btn-group" role="group" aria-label="Third group">
+                                <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
                                     <input name ='id' type='hidden' value = ${task.id} />
                                     <button type="submit" class="btn btn-secondary">DELETE</button>
                                 </form>
-
+                            </div>
                             <div class="btn-group" role="group" aria-label="Third group">
 
                                 <a class='btn btn-secondary' href='#editTask${task.id}' > EDIT </a>
