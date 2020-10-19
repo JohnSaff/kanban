@@ -33,6 +33,10 @@
   opacity: 1;
 }
 
+.navbar-brand{
+  color: aqua;
+}
+
 .popup {
   margin: 70px auto;
   padding: 20px;
@@ -88,16 +92,12 @@
  select {
   width: 100%;
   padding:10px;
-  border-radius:10px;
+  border-radius:20px;
 }
  
 .popupbtn {
-
-  /* remove default behavior */
   appearance:none;
   -webkit-appearance:none;
-
-  /* usual styles */
   padding:10px;
   border:none;
   background-color:#3F51B5;
@@ -105,12 +105,73 @@
   font-weight:600;
   border-radius:5px;
   width:100%;
+  
 
 }
+
+.popupbtnhome{
+  appearance:none;
+  -webkit-appearance:none;
+  padding:10px;
+  border:none;
+  background-color:#3F51B5;
+  color:#fff;
+  font-weight:600;
+  border-radius:5px;
+  width:25%;
+  right:10px;
+ position: relative;
+ margin: 8px;
+
+}
+.some-class {
+  width:200px;
+  padding:20px;
+}
+
+input[name="name"] {
+  padding:5px;
+  margin: 6px;
+  border-radius:10px;
+}
+
+input[name="username"] {
+  padding:5px;
+  margin: 6px;
+  border-radius:5px;
+}
+
+input[name="taskName"] {
+  padding:5px;
+  margin: 6px;
+  border-radius:5px;
+}
+
+
+input[name="taskDescription"] {
+  padding:5px;
+  margin: 6px;
+  border-radius:5px;
+}
+
+input[type=date] {
+  padding:5px;
+  margin: 6px;
+  border-radius:5px;
+}
+
+input[type=url] {
+  padding:5px;
+  margin: 6px;
+  border-radius:5px;
+}
+
 
 .navbar-toggler-icon{
     z-index: 20;
 }
+
+
 
 
 /* --------PROFILE PAGE--------- */
