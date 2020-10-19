@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+   <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
         <a class="navbar-brand" href="/">app name/brand</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
         <a class="close" href="#">&times;</a>
         <div class="content">
             <form action='/boards/{{board.id}}/tasks/create' method='POST'>
-                <label>Task Title *</label>
+                <label>Task Title</label>
                 <input type='text' name='taskName' required /><br>
                 <label>Description</label>
                 <input type='text' name='taskDescription' required /><br>
@@ -50,7 +50,7 @@
                 <label>Deadline</label>
                 <input type="date" name="deadline" /><br>
                 <input type='hidden' name="status" value='to do' />
-                <button>submit</button>
+                <button class="popupbtn">submit</button>
             </form>
         </div>
     </div>
@@ -70,7 +70,7 @@
         <input type='text' name = 'name' required/><br>
         <label>description</label>
         <input type='text' name ='description' required/><br>
-        <button>submit</button>
+        <button class="popupbtn">submit</button>
     </form>
 		</div>
 	</div>
@@ -92,11 +92,11 @@ console.log('script running')
     const view = (state)=>`
         <div class='container'>
             <div class='row'>
-                <div class='column' ondragover="event.preventDefault()" ondrop="app.run('onDropToDo',event)">
+                <div class='col-auto' ondragover="event.preventDefault()" ondrop="app.run('onDropToDo',event)">
                     <h3>To Do</h3>
                     ${state.toDo.map(task=>`
 
-                    <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem; outline:0;">
+                    <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                         <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
                             <h5 class="card-title">${task.taskName}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
@@ -142,11 +142,11 @@ console.log('script running')
 
                     `).join('')}
                 </div>
-                <div class='column' ondragover="event.preventDefault()" ondrop="app.run('onDropDoing',event)">
+                <div class='col-auto' ondragover="event.preventDefault()" ondrop="app.run('onDropDoing',event)">
                     <h3>In Progress</h3>
                     ${state.doing.map(task=>`
 
-                    <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem; outline:0;">
+                    <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                         <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
                             <h5 class="card-title">${task.taskName}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
@@ -193,11 +193,11 @@ console.log('script running')
 
                     `).join('')}
                 </div>
-                <div class='column'ondragover="event.preventDefault()" ondrop="app.run('onDropDone',event)">
+                <div class='col-auto'ondragover="event.preventDefault()" ondrop="app.run('onDropDone',event)">
                     <h3>Done</h3>
                     ${state.done.map(task=>`
 
-                    <div class="card border-0" dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem; outline:0;">
+                    <div class="card border-0" dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                         <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
                             <h5 class="card-title">${task.taskName}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
