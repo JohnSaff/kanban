@@ -46,7 +46,7 @@
   z-index: -1;
   position: relative;
   transition: all 5s ease-in-out;
-  
+
 }
 
 .popup h2 {
@@ -63,18 +63,18 @@
   font-weight: bold;
   text-decoration: none;
   color: #333;
-  
+
 }
 .card-body:hover {
-  
+
   background-color: rgb(243, 243, 243);
-  
+
 
 }
 .popup .content {
   max-height: 30%;
   overflow: auto;
-  
+
 }
 
 
@@ -82,7 +82,7 @@
   border-radius: 25px;
   padding: 15px;
   outline:none;
-  
+
  }
 
  .card{
@@ -94,7 +94,7 @@
   padding:10px;
   border-radius:20px;
 }
- 
+
 .popupbtn {
   appearance:none;
   -webkit-appearance:none;
@@ -105,7 +105,7 @@
   font-weight:600;
   border-radius:5px;
   width:100%;
-  
+
 
 }
 
@@ -264,7 +264,7 @@ input[type=url] {
   flex-direction: column;
   height: 100px;
   align-items: center;
- 
+
 }
 
 .done-column {
@@ -272,6 +272,14 @@ input[type=url] {
   flex-direction: column;
   height: 100px;
   align-items: center;
- 
+
 }
 
+.avatar-box-board {
+  height: 2rem;
+  width: 2rem;
+  margin: 0px 0px 0px 30px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 15px -5px black;
+  overflow: hidden;
+}
