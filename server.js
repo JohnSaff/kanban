@@ -71,7 +71,7 @@ app.get('/',async (req,res)=>{
 //-----find user from homepage----
 app.post('/finduser', async (req,res)=>{
     console.log(req.body)
-    users = await User.findAll({where:{username:req.body.username}})
+    users = await User.findAll({where:{username:req.body.username1}})
     user = users[0]
     res.redirect(`/users/${user.id}`)
 })
