@@ -4,8 +4,10 @@
   "description": "",
   "main": "models.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "watch": "NODE_ENV=dev PORT=3000 nodemon server.js",
+    "test": "PORT=3001 jest --watchAll",
+    "test:cypress": "PORT=3001 cypress open"
   },
   "repository": {
     "type": "git",
@@ -24,8 +26,13 @@
     "handlebars": "^4.7.6",
     "jest": "^26.5.3",
     "nodemon": "^2.0.5",
+    "pg": "^8.4.1",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
+  },
+  "engines": {
+    "node": "14",
+    "npm": "6"
   },
   "devDependencies": {
     "chai": "^4.2.0",

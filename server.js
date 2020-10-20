@@ -4,7 +4,7 @@ const expressHandlebars = require('express-handlebars')
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const { response } = require('express')
 const app = express()
-const {Board,Task,User,userboards,sequelize} = require("./models")
+const {Board,Task,User,userboards,sequelize} = require("./models.js")
 
 const handlebars = expressHandlebars({
     handlebars: allowInsecurePrototypeAccess(Handlebars)
@@ -19,7 +19,6 @@ async function sync() {
  await sequelize.sync()
 }
 sync()
-app.listen(3000, () => console.log('web server running on port 3000'))
 
 //---------rendering create User page ------
 
@@ -227,4 +226,9 @@ app.post('/tasks/:taskid/delete',async(req,res)=>{
     const task = await Task.findByPk(req.params.taskid)
     await task.destroy()
     res.send()
+})
+
+
+app.listen(process.env.PORT, () => {
+    console.log('faire-kanban running on port ',process.env.PORT)
 })
