@@ -64,6 +64,21 @@ margin: 10px;
   text-decoration: none;
   color: #333;
 }
+
+.boards-container {
+  background-color: gray;
+  margin: 30px;
+  border-radius: 25px;
+  
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
 .card-body:hover {
   background-color: rgb(243, 243, 243);
 }
@@ -81,7 +96,7 @@ margin: 10px;
 
 .card {
   padding: 13px;
-  margin: 60px;
+  margin: 30px;
   border-radius: 10px;
 }
 
