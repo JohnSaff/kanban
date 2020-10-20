@@ -85,7 +85,13 @@ app.get('/boards/:boardid',async (req,res)=>{
     const done = await board.getTasks({where:{status:'done'},include:[{model:User}]})
     const toDo = await board.getTasks({where:{status:'to do'},include:[{model:User}]})
     const boardUsers = await board.getUsers()
-    res.render('board',{board,inProgress,done,toDo,users,boardUsers})
+    const avatars = []
+    // var i
+    // for (i=0;i< users.length; i++){
+    //     avatars.push(users[i].avatar)
+    // }
+    // console.log(avatars)
+    res.render('board',{board,inProgress,done,toDo,users,boardUsers})//,avatars})
 })
 
 //----assign user to board---
@@ -192,6 +198,11 @@ app.get('/boards/:boardid/tasks/doing',async (req,res)=>{
             BoardId:req.params.boardid,
             status:"in progress"}});
     res.send(doing)
+})
+
+app.get('/users',async (req,res) =>{
+    const users = await User.findAll()
+    res.send(users)
 })
 
 //-----changing status of tasks from board-------
