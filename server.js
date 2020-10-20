@@ -15,12 +15,12 @@ app.engine('handlebars', handlebars)
 app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-async function sync() {
- await sequelize.sync()
-}
-sync()
-app.listen(3000, () => console.log('web server running on port 3000'))
 
+app.listen(process.env.PORT, () => {
+    sequelize.sync(() => {
+        console.log('Kanban app running on port', process.env.PORT)
+    })
+})
 //---------rendering create User page ------
 
 app.get('/users/create',(req,res)=>{
