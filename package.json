@@ -8,7 +8,6 @@
     "watch": "NODE_ENV=dev PORT=3000 nodemon server.js",
     "test": "PORT=3001 jest --watchAll",
     "test:cypress": "PORT=3001 cypress open"
-}
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,7 @@
   "engines": {
     "node": "14",
     "npm": "6"
-}
+  },
   "homepage": "https://github.com/JSafrany/kanban#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.3",
