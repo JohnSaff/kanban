@@ -1,11 +1,12 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .base {
   background-color: rgb(0, 121, 191);
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
+    Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 14px;
   display: grid;
   grid-template-rows: max-content auto;
@@ -13,8 +14,6 @@
   height: 100%;
   padding: 5px;
 }
-
-
 
 .overlay {
   position: fixed;
@@ -33,10 +32,12 @@
   opacity: 1;
 }
 
-.navbar-brand{
+.navbar-brand {
   color: aqua;
 }
-
+.btn-secondary{
+margin: 10px;
+}
 .popup {
   margin: 70px auto;
   padding: 20px;
@@ -46,7 +47,6 @@
   z-index: -1;
   position: relative;
   transition: all 5s ease-in-out;
-
 }
 
 .popup h2 {
@@ -63,122 +63,120 @@
   font-weight: bold;
   text-decoration: none;
   color: #333;
-
 }
 .card-body:hover {
-
   background-color: rgb(243, 243, 243);
-
-
 }
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
 
+.card-body {
+  border-radius: 25px;
+  padding: 15px;
+  outline: none;
 }
 
 
-.card-body{
-  border-radius: 25px;
-  padding: 15px;
-  outline:none;
+.card {
+  padding: 13px;
+  margin: 60px;
+  border-radius: 10px;
+}
 
- }
-
- .card{
-   padding:13px;
- }
-
- select {
+select {
   width: 100%;
-  padding:10px;
-  border-radius:20px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.username3{
+  margin-left: 20px
+}
+
+.username2{
+  margin-left: 2px;
+  width: 18%;
 }
 
 .popupbtn {
-  appearance:none;
-  -webkit-appearance:none;
-  padding:10px;
-  border:none;
-  background-color:#3F51B5;
-  color:#fff;
-  font-weight:600;
-  border-radius:5px;
-  width:100%;
-
-
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 10px;
+  border: none;
+  background-color: #3f51b5;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 100%;
 }
 
-.popupbtnhome{
-  appearance:none;
-  -webkit-appearance:none;
-  padding:10px;
-  border:none;
-  background-color:#3F51B5;
-  color:#fff;
-  font-weight:600;
-  border-radius:5px;
-  width:25%;
-  right:10px;
- position: relative;
- margin: 8px;
+.popupbtnhome {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 10px;
+  border: none;
+  background-color: #3f51b5;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 20px;
+  width: 5%;
 
+  
+  margin: 8px;
+  margin-bottom: 80px;
 }
 .some-class {
-  width:200px;
-  padding:20px;
+  width: 200px;
+  padding: 20px;
 }
 
 input[name="name"] {
-  padding:5px;
+  padding: 5px;
   margin: 6px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 input[name="username"] {
-  padding:5px;
+  padding: 5px;
   margin: 6px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 input[name="taskName"] {
-  padding:5px;
+  padding: 5px;
   margin: 6px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
-
 input[name="taskDescription"] {
-  padding:5px;
+  padding: 5px;
   margin: 6px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 input[name="description"] {
-  padding:5px;
+  padding: 5px;
   margin: 6px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
-input[type=date] {
-  padding:5px;
+input[type="date"] {
+  padding: 5px;
   margin: 6px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
-input[type=url] {
-  padding:5px;
+input[type="url"] {
+  padding: 5px;
   margin: 6px;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
-
-.navbar-toggler-icon{
-    z-index: 20;
+.navbar-toggler-icon {
+  z-index: 20;
 }
-
-
-
 
 /* --------PROFILE PAGE--------- */
 .jumbotron {
@@ -235,7 +233,6 @@ input[type=url] {
   flex-wrap: wrap;
   height: 100px;
   align-items: center;
-
 }
 
 .boards-column {
@@ -246,10 +243,6 @@ input[type=url] {
   text-align: center;
   align-items: center;
 }
-
-
-
-
 
 /*---------BOARD PAGE--------- */
 .todo-column {
@@ -264,7 +257,6 @@ input[type=url] {
   flex-direction: column;
   height: 100px;
   align-items: center;
-
 }
 
 .done-column {
@@ -272,7 +264,6 @@ input[type=url] {
   flex-direction: column;
   height: 100px;
   align-items: center;
-
 }
 
 .avatar-box-board {
