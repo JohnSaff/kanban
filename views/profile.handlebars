@@ -53,30 +53,34 @@
     <div class="tasks-boards-flexbox">
         <div class='flexbox-row'>
             <div class='flexbox-column'>
-                <div>
+                <div class="assignheader">
                     Assigned Tasks
                 </div>
                 {{#each tasks}}
-                    <div class='todo-column'>
-                        <div class="card-body" id='${task.id}' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
+                    <div class='todo-column1'>
+                        <div class="card1">
+                        <div class="cardbodyass" id='${task.id}' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
                             <h4 class="card-title">{{this.taskName}} </h4>
                             <h6 class="card-subtitle mb-2 text-muted">{{this.deadline}}</h6>
                             <h5 class="card-text">{{this.taskDescription}}</h5>
                         </div>
                     </div>
+                    </div>
                 {{/each}}
             </div>
             <div class='flexbox-column'>
-                <div>
+                <div class="assignheader">
                     Assigned Boards
                 </div>
                 {{#each boards}}
-                    <div class="todo-column" >
+                    <div class="todo-column1" >
+                        <div class="card1>
                     <a href='/boards/{{this.id}}'>
-                        <div class="card-body">
+                        <div class="cardbodyass">
                             <h4 class="card-title">{{this.name}}</h4>
                             <h5 class="card-subtitle mb-2 text-muted">{{this.description}}</h5>
                         </div>
+                    </div>
                     </a>
                     </div>
                 {{/each}}
@@ -95,7 +99,7 @@
                     <input type='text' name = 'username' required/><br>
                     <label>Avatar URL</label>
                     <input type='url' name ='avatar' required/><br>
-                    <button>submit</button>
+                    <button class="popupbtn">submit</button>
                 </form>
             </div>
 	    </div>
@@ -112,7 +116,7 @@
                     <input type='text' name = 'name' required/><br>
                     <label>description</label>
                     <input type='text' name ='description' required/><br>
-                    <button>submit</button>
+                    <button class="popupbtn">submit</button>
                 </form>
 		    </div>
         </div>
