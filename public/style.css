@@ -19,6 +19,7 @@
   padding: 5px;
 }
 
+
 .overlay {
   position: fixed;
   top: 0;
@@ -50,7 +51,6 @@ color: #fff;
 font-weight: 600;
 border-radius: 5px;
 }
-
 .popup {
   margin: 70px auto;
   padding: 20px;
@@ -91,16 +91,10 @@ border-radius: 5px;
   outline: none;
 }
 
+
 .card {
   padding: 13px;
   margin: 30px;
-  border-radius: 10px;
-  border: solid #98cace 5px;
-}
-
-.card.border-0 {
-  padding: 13px;
-  margin: 5px;
   border-radius: 10px;
 }
 
@@ -108,14 +102,13 @@ select {
   width: 100%;
   padding: 10px;
   border-radius: 20px;
-  border: solid #98cace 2px;
 }
 
-.username2 {
-  margin-left: 20px;
+.username2{
+  margin-left: 20px
 }
 
-.username3 {
+.username3{
   margin-left: 2px;
   width: 18%;
 }
@@ -125,7 +118,7 @@ select {
   -webkit-appearance: none;
   padding: 10px;
   border: none;
-  background-color: #3f51b5;
+  background-color: #276190;
   color: #fff;
   font-weight: 600;
   border-radius: 5px;
@@ -143,6 +136,7 @@ select {
   border-radius: 20px;
   width: 5%;
 
+  
   margin: 8px;
   margin-bottom: 80px;
 }
@@ -263,34 +257,12 @@ input[type="url"] {
   align-items: center;
 }
 
-.cardbodyass {
-  padding: 0.5px;
-}
-
-.card1 {
-  padding: 0.5px;
-
-  border-radius: 5px;
-  margin: 5px;
-}
-
-.todo-column1 {
-  display: flex;
-  flex-direction: column;
-  height: 150px;
-  align-items: center;
-  margin: 10px;
-  border: solid #98cace 5px;
-  border-radius: 20px;
-}
-
 /*---------BOARD PAGE--------- */
 .todo-column {
   display: flex;
   flex-direction: column;
   height: 100px;
   align-items: center;
-  margin: ;
 }
 
 .inprogress-column {
@@ -323,7 +295,7 @@ input[type="url"] {
 
 /* grey container on homepage */
 .boards-container {
-  background-color: gray;
+  background-color: rgb(216, 213, 213);
   margin: 30px;
   border-radius: 25px;
 }
