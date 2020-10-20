@@ -4,8 +4,10 @@
   "description": "",
   "main": "models.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "watch": "NODE_ENV=dev PORT=3000 nodemon server.js",
+    "test": "PORT=3001 jest --watchAll",
+    "test:cypress": "PORT=3001 cypress open"
   },
   "repository": {
     "type": "git",
@@ -15,6 +17,10 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JSafrany/kanban/issues"
+  },
+  "engines": {
+    "node": "14",
+    "npm": "6"
   },
   "homepage": "https://github.com/JSafrany/kanban#readme",
   "dependencies": {
