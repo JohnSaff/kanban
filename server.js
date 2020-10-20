@@ -9,7 +9,7 @@ const {Board,Task,User,sequelize} = require("./models")
 const handlebars = expressHandlebars({
     handlebars: allowInsecurePrototypeAccess(Handlebars)
 })
-
+//change
 app.use(express.static('public'))
 app.engine('handlebars', handlebars)
 app.set('view engine', 'handlebars')
