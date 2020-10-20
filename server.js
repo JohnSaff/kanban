@@ -4,7 +4,7 @@ const expressHandlebars = require('express-handlebars')
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const { response } = require('express')
 const app = express()
-const {Board,Task,User,userboards,sequelize} = require("./models")
+const {Board,Task,User,sequelize} = require("./models")
 
 const handlebars = expressHandlebars({
     handlebars: allowInsecurePrototypeAccess(Handlebars)
