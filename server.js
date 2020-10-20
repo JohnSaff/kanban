@@ -141,6 +141,11 @@ app.post('/boards/:boardid/edit',async (req,res) =>{
 app.post('/boards/:boardid/tasks/:taskid/update',async (req,res)=>{
     const task = await Task.findByPk(req.params.taskid)
     await task.update({taskName:req.body.taskName,taskDescription:req.body.taskDescription,status:req.body.status,priority:req.body.priority,deadline:req.body.deadline})
+    const users = await User.findAll({where:{username:`${req.body.assignee}`}})
+    const user = users[0]
+    console.log(user)
+    await task.setUser(user)
+    console.log(task)
     res.redirect(`/boards/${req.params.boardid}`)
 })
 
