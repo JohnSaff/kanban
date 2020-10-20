@@ -53,28 +53,33 @@
     <div class="tasks-boards-flexbox">
         <div class='flexbox-row'>
             <div class='flexbox-column'>
-                <div class='tasks-column'>
+                <div>
                     Assigned Tasks
                 </div>
+                {{#each tasks}}
+                    <div class='todo-column'>
+                        <div class="card-body" id='${task.id}' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
+                            <h4 class="card-title">{{this.taskName}} </h4>
+                            <h6 class="card-subtitle mb-2 text-muted">{{this.deadline}}</h6>
+                            <h5 class="card-text">{{this.taskDescription}}</h5>
+                        </div>
+                    </div>
+                {{/each}}
             </div>
             <div class='flexbox-column'>
-                <div class='boards-column'>
-                    My Boards
+                <div>
+                    Assigned Boards
                 </div>
-            </div>
-        </div>
-        <div class='flexbox-row2'>
-            <div class='flexbox-column' ondragover="event.preventDefault()" ondrop="app.run('onDropToDo',event)">
-                <div class='tasks-column'>
-                    
-                        TASKS GO HERE
-                    
-                </div>
-            </div>
-            <div class='flexbox-column'>
-                <div class='boards-column'>
-                    boards go here
-                </div>
+                {{#each boards}}
+                    <div class="todo-column" >
+                    <a href='/boards/{{this.id}}'>
+                        <div class="card-body">
+                            <h4 class="card-title">{{this.name}}</h4>
+                            <h5 class="card-subtitle mb-2 text-muted">{{this.description}}</h5>
+                        </div>
+                    </a>
+                    </div>
+                {{/each}}
             </div>
         </div>
     </div>
