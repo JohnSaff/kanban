@@ -1,8 +1,8 @@
 
     <title class="display-1">Faire</title>
-    <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #173753;">
 
-        <a class="navbar-brand" href="#">FAIRE</a>
+        <a class="navbar-brand" href="#" style="color: white;">Faire</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
             <span class="navbar-toggler-icon"></span>
@@ -10,17 +10,17 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#createUser">Create User <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#createUser" style="color: white;">Create User <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#createBoard">Create Board</a>
+                    <a class="nav-link" href="#createBoard" style="color: white;">Create Board</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="jumbotron">
-        <h1 class="display-4">ALL BOARDS</h1>
+    <div class="jumbotron" style="background-color: #98CAEC;">
+        <h1 class="display-4">All Boards</h1>
     </div>
 
 
@@ -68,18 +68,18 @@
     </form>
 
 
-    <div class='container'>
+    <div class="boards-container">
         <div class="row">
             {{#each boards}}
             <a href='/boards/{{this.id}}'>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{this.name}}</h5>
+                    <h5 class="card-title" style="color: #1c0b19;">{{this.name}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{this.description}}</h6>
                     <p class="card-text">{{#each this.users}} {{this.username}} {{/each}}</p>
                     <div class="btn-group2" role="group" aria-label="Third group">
-                        <a href="/boards/{{this.id}}/delete" method="POST" class="btn btn-secondary">DELETE</a>
-                        <a href="#editBoard{{this.id}}" class="btn btn-secondary">EDIT</a>
+                        <a href="/boards/{{this.id}}/delete" method="POST" class="btn btn-secondary" style="background-color: #276190;">DELETE</a>
+                        <a href="#editBoard{{this.id}}" class="btn btn-secondary" style="background-color: #276190;">EDIT</a>
                     </div>
                 </div>
                 </a>

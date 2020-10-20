@@ -3,9 +3,8 @@
   margin: 0;
 }
 
-.display-4,
-.display-1 {
-  font-family: "Times New Roman", Times, serif;
+.display-4 {
+  font-family: 'PT Sans Caption', sans-serif;
 }
 
 .base {
@@ -38,18 +37,20 @@
 }
 
 .navbar-brand {
-  font-family: "Sansita Swashed", cursive;
+  font-family: 'Sansita Swashed', cursive;
 }
-.btn.btn-secondary {
-  margin: 2px;
-  appearance: none;
-  -webkit-appearance: none;
-  padding: 2.5px;
-  background-color: #3f51b5;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 5px;
+
+.btn.btn-secondary{
+margin: 2px;
+appearance: none;
+-webkit-appearance: none;
+padding: 2.5px;
+background-color: #3f51b5;
+color: #fff;
+font-weight: 600;
+border-radius: 5px;
 }
+
 .popup {
   margin: 70px auto;
   padding: 20px;
@@ -92,7 +93,7 @@
 
 .card {
   padding: 13px;
-  margin: 60px;
+  margin: 30px;
   border-radius: 10px;
   border: solid #98cace 5px;
 }
@@ -136,7 +137,7 @@ select {
   -webkit-appearance: none;
   padding: 10px;
   border: none;
-  background-color: #3f51b5;
+  background-color: #276190;
   color: #fff;
   font-weight: 600;
   border-radius: 20px;
@@ -313,4 +314,23 @@ input[type="url"] {
   border-radius: 50%;
   box-shadow: 1px 1px 15px -5px black;
   overflow: hidden;
+}
+
+
+
+
+
+
+/* grey container on homepage */
+.boards-container {
+  background-color: gray;
+  margin: 30px;
+  border-radius: 25px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
 }
