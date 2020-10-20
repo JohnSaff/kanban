@@ -136,7 +136,8 @@ console.log('script running')
     const state = {
         toDo: [],
         doing: [],
-        done:[]
+        done:[],
+        users:[]
     }
     const view = (state)=>`
         <div class="tasks-boards-flexbox">
@@ -148,9 +149,9 @@ console.log('script running')
                             ${state.toDo.map(task=>`
                             <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                                 <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
-                                    <h5 class="card-title">${task.taskName}</h5>
+                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId].avatar}'>`:'')}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
-                                    <p class="card-text">${task.taskDescription}</p>
+                                    <h5 class="card-text">${task.taskDescription}</h5>
                                     <div class="btn-group" role="group" aria-label="Third group">
                                         <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
                                             <input name ='id' type='hidden' value = ${task.id} />
@@ -208,9 +209,9 @@ console.log('script running')
 
                             <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                                 <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
-                                    <h5 class="card-title">${task.taskName}</h5>
+                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId].avatar}'>`:'')}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
-                                    <p class="card-text">${task.taskDescription}</p>
+                                    <h5 class="card-text">${task.taskDescription}</h5>
                                     <div class="btn-group" role="group" aria-label="Third group">
                                         <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
                                             <input name ='id' type='hidden' value = ${task.id} />
@@ -268,9 +269,9 @@ console.log('script running')
 
                             <div class="card border-0" dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                                 <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
-                                    <h5 class="card-title">${task.taskName}</h5>
+                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId].avatar}'>`:'')}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
-                                    <p class="card-text">${task.taskDescription}</p>
+                                    <h5 class="card-text">${task.taskDescription}</h5>
                                     <div class="btn-group" role="group" aria-label="Third group">
                                         <form id='${window.crypto.getRandomValues(new Uint8Array(3)).join("")}' onsubmit="app.run('delete', this);return false;">
                                             <input name ='id' type='hidden' value = ${task.id} />
@@ -316,8 +317,8 @@ console.log('script running')
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         `).join('')}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -396,6 +397,7 @@ const update={
         state.done = await fetch('/boards/{{board.id}}/tasks/done').then(res=>res.json())
         state.doing = await fetch('/boards/{{board.id}}/tasks/doing').then(res=>res.json())
         state.toDo = await fetch('/boards/{{board.id}}/tasks/todo').then(res=>res.json())
+        state.users = await fetch('/users').then(res=>res.json())
         return state
     }
 }

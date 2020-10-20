@@ -58,8 +58,13 @@
 </div>
 
     <form action='/finduser' method='POST'>
+<<<<<<< HEAD
         <label class="username2" for="username">Username:</label>
         <select class="username3" name='username1'>
+=======
+        <label for="username">Username:</label>
+        <select name="username">
+>>>>>>> f11a6f5b3a65e94a3cb170ddbb05ceb95cd77e5a
             {{#each users}}
                 <option name="{{this.username}}"> {{this.username}} </option>
             {{/each}}

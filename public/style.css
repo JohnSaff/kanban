@@ -92,6 +92,7 @@ border-radius: 5px;
   outline: none;
 }
 
+
 .card {
   padding: 13px;
   margin: 60px;
@@ -279,3 +280,11 @@ input[type="url"] {
   align-items: center;
 }
 
+.avatar-box-board {
+  height: 2rem;
+  width: 2rem;
+  margin: 0px 0px 0px 30px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 15px -5px black;
+  overflow: hidden;
+}
