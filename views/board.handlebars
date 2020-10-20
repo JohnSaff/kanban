@@ -54,7 +54,7 @@
         <a class="close" href="#">&times;</a>
         <div class="content">
             <form action='/boards/{{board.id}}/users/add' method='POST'>
-                 <select name='username'>
+                 <select class="selectassign" name='username'>
                     {{#each users}}
                         <option name="{{this.username}}"> {{this.username}} </option>
                     {{/each}}

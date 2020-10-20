@@ -102,7 +102,6 @@ border-radius: 5px;
   padding: 13px;
   margin: 30px;
   border-radius: 10px;
-<<<<<<< HEAD
   border: solid #98caec 5px;
 }
 
@@ -110,18 +109,22 @@ border-radius: 5px;
   padding: 13px;
   margin: 5px;
   border-radius: 10px;
-=======
->>>>>>> 5c781ff0702202e367fcc593c9c5e4c9111df855
 }
-
-select {
+select{
   width: 100%;
   padding: 8px;
   border-radius: 20px;
-<<<<<<< HEAD
   border: solid #276190 2px;
-}
 
+  border: solid #98cace 2px;
+ 
+}
+.selectassign{
+  padding: 10px;
+  margin: 20px;
+  width: 90%;
+
+}
 .username2 {
   margin-left: 20px;
   position: relative ;
@@ -130,12 +133,12 @@ select {
   font-size: 20px;
   color: #276190;
   font-weight: 700;
-=======
+
 }
 
 .username2{
   margin-left: 20px
->>>>>>> 5c781ff0702202e367fcc593c9c5e4c9111df855
+
 }
 
 .username3{
@@ -292,7 +295,7 @@ input[type="url"] {
   align-items: center;
 }
 
-<<<<<<< HEAD
+
 .cardbodyass {
   padding: 0.5px;
 }
@@ -314,8 +317,7 @@ input[type="url"] {
   border-radius: 20px;
 }
 
-=======
->>>>>>> 5c781ff0702202e367fcc593c9c5e4c9111df855
+
 /*---------BOARD PAGE--------- */
 .todo-column {
   display: flex;
@@ -354,14 +356,13 @@ input[type="url"] {
 
 /* grey container on homepage */
 .boards-container {
-<<<<<<< HEAD
+
   background-color: rgb(227, 242, 245);
   margin-left: 30px;
   margin-right: 30px;
-=======
-  background-color: rgb(216, 213, 213);
+  
   margin: 30px;
->>>>>>> 5c781ff0702202e367fcc593c9c5e4c9111df855
+
   border-radius: 25px;
   height:900px;
   padding-left: 82px;
