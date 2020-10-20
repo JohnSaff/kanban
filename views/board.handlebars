@@ -186,7 +186,7 @@ console.log('script running')
                                                 <option name='urg1' ${task.priority == 'Urgent' ? "selected" : ''}>Urgent</option>
                                             </select><br>
                                             <label>Assignee</label>
-                                            <select name='assignee'>
+                                            <select class="selectassign"name='assignee'>
                                                 <option name="none"></option>
                                                 {{#each users}}
                                                     <option name="{{this.username}}"> {{this.username}} </option>

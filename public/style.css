@@ -4,7 +4,10 @@
 }
 
 .display-4 {
+  position: relative;
   font-family: 'PT Sans Caption', sans-serif;
+  left: 46%;
+  color: #276190;
 }
 
 .base {
@@ -45,7 +48,7 @@ margin: 2px;
 appearance: none;
 -webkit-appearance: none;
 padding: 2.5px;
-background-color: #3f51b5;
+background-color: #98caec;
 color: #fff;
 font-weight: 600;
 border-radius: 5px;
@@ -85,6 +88,9 @@ border-radius: 5px;
   overflow: auto;
 }
 
+.selectassign{
+  margin: 10px;
+}
 .card-body {
   border-radius: 25px;
   padding: 15px;
@@ -95,7 +101,7 @@ border-radius: 5px;
   padding: 13px;
   margin: 30px;
   border-radius: 10px;
-  border: solid #98cace 5px;
+  border: solid #98caec 5px;
 }
 
 .card.border-0 {
@@ -106,18 +112,26 @@ border-radius: 5px;
 
 select {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   border-radius: 20px;
-  border: solid #98cace 2px;
+  border: solid #276190 2px;
 }
 
 .username2 {
   margin-left: 20px;
+  position: relative ;
+  left: 37.5%;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  color: #276190;
+  font-weight: 700;
 }
 
 .username3 {
   margin-left: 2px;
   width: 18%;
+  position: relative;
+  left: 37.5%;
 }
 
 .popupbtn {
@@ -130,18 +144,21 @@ select {
   font-weight: 600;
   border-radius: 5px;
   width: 100%;
+  
 }
 
 .popupbtnhome {
   appearance: none;
   -webkit-appearance: none;
-  padding: 10px;
+  padding: 8px;
   border: none;
   background-color: #276190;
   color: #fff;
   font-weight: 600;
   border-radius: 20px;
   width: 5%;
+  position: relative;
+  left: 37.5%;
 
   margin: 8px;
   margin-bottom: 80px;
@@ -208,7 +225,7 @@ input[type="url"] {
   height: 150px;
   width: 150px;
   margin: 0px 0px 0px 30px;
-  border-radius: 50%;
+  border-radius: 45%;
   box-shadow: 1px 1px 15px -5px black;
   overflow: hidden;
 }
@@ -280,7 +297,7 @@ input[type="url"] {
   height: 150px;
   align-items: center;
   margin: 10px;
-  border: solid #98cace 5px;
+  border: solid #98caec 5px;
   border-radius: 20px;
 }
 
@@ -311,7 +328,7 @@ input[type="url"] {
   height: 2rem;
   width: 2rem;
   margin: 0px 0px 0px 30px;
-  border-radius: 50%;
+  border-radius: 45%;
   box-shadow: 1px 1px 15px -5px black;
   overflow: hidden;
 }
@@ -323,9 +340,15 @@ input[type="url"] {
 
 /* grey container on homepage */
 .boards-container {
-  background-color: gray;
-  margin: 30px;
+  background-color: rgb(227, 242, 245);
+  margin-left: 30px;
+  margin-right: 30px;
   border-radius: 25px;
+  height:900px;
+  padding-left: 82px;
+  
+ 
+
 }
 
 .row {
@@ -333,4 +356,5 @@ input[type="url"] {
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
+  
 }
