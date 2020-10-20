@@ -1,8 +1,8 @@
     <title>{{board.name}}</title>
 
-    <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #173753;">
 
-        <a class="navbar-brand" href="/">Faire</a>
+        <a class="navbar-brand" href="/" style="color: white;">Faire</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,19 +10,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#createBoard">Create Board</a>
+                    <a class="nav-link" href="#createBoard" style="color: white;">Create Board</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#createTask">Add task <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#createTask" style="color: white;">Add task <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/boards/{{board.id}}/delete">Delete Board</a>
+                    <a class="nav-link" href="/boards/{{board.id}}/delete" style="color: white;">Delete Board</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#addUser">Assign User To Board</a>
+                    <a class="nav-link" href="#addUser" style="color: white;">Assign User To Board</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#removeUser">Remove User From Board</a>
+                    <a class="nav-link" href="#removeUser" style="color: white;">Remove User From Board</a>
                 </li>
             </ul>
         </div>
@@ -118,7 +118,7 @@
 	</div>
 </div>
 
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-color: #98CAEC;">
         <h1 class="display-4">{{board.name}}</h1>
         {{#each boardUsers}}
         <a href="/users/{{this.id}}">
