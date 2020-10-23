@@ -149,7 +149,7 @@ console.log('script running')
                             ${state.toDo.map(task=>`
                             <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                                 <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
-                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId].avatar}'>`:'')}</h4>
+                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId -1] ? `<img class='avatar-box-board' src='${state.users[task.UserId -1].avatar}'>`:'')}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
                                     <h5 class="card-text">${task.taskDescription}</h5>
                                     <div class="btn-group" role="group" aria-label="Third group">
@@ -163,7 +163,7 @@ console.log('script running')
                                     </div>
                                         </form>
                                     </div>
-                                   
+
                                 </div>
                             </div>
 
@@ -211,7 +211,7 @@ console.log('script running')
 
                             <div class="card border-0"  dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                                 <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
-                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId].avatar}'>`:'')}</h4>
+                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId -1 ].avatar}'>`:'')}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
                                     <h5 class="card-text">${task.taskDescription}</h5>
                                     <div class="btn-group" role="group" aria-label="Third group">
@@ -270,7 +270,7 @@ console.log('script running')
 
                             <div class="card border-0" dragable='true' ondragstart="app.run('onDragStart',event)" style="width: 18rem;">
                                 <div class="card-body" id='${task.id}' draggable='true' style="${(task.priority =="Low") ? "border: 5px solid green;": (task.priority =="Medium") ? "border: 5px solid yellow;" : (task.priority =="High") ? "border: 5px solid orange;" : "border: 5px solid red;"}">
-                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId].avatar}'>`:'')}</h4>
+                                    <h4 class="card-title">${task.taskName} ${(state.users[task.UserId] ? `<img class='avatar-box-board' src='${state.users[task.UserId -1 ].avatar}'>`:'')}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">${task.deadline ? `Due ${task.deadline.slice(0,10)}`:''}</h6>
                                     <h5 class="card-text">${task.taskDescription}</h5>
                                     <div class="btn-group" role="group" aria-label="Third group">
